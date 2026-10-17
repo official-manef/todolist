@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# TugasKu — To-do list
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi web sederhana untuk mencatat dan mengelola tugas harian. Dibangun dengan React, TypeScript, dan Vite.
 
-Currently, two official plugins are available:
+## Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Menambahkan tugas.
+- Menandai tugas selesai atau belum selesai.
+- Menghapus tugas.
+- Menampilkan jumlah tugas yang selesai dibandingkan dengan jumlah seluruh tugas.
+- Menyimpan daftar tugas di `localStorage` pada browser yang digunakan.
 
-## React Compiler
+Aplikasi ini tidak memiliki backend atau sinkronisasi antarperangkat. Data tersimpan di browser, bukan di server.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Menjalankan aplikasi
 
-## Expanding the ESLint configuration
+Prasyarat: Node.js dan npm yang kompatibel dengan dependensi proyek.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Buka alamat lokal yang ditampilkan Vite di terminal.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Pemeriksaan dan build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Skrip yang tersedia di `package.json`:
+
+```bash
+npm run lint
+npm run build
+npm run preview
 ```
+
+`npm run build` menjalankan pemeriksaan TypeScript lalu membuat build Vite. Jalankan `npm run preview` setelah build untuk menyajikan hasil build secara lokal.
+
+Repositori ini tidak mendefinisikan skrip pengujian otomatis. Perintah di atas dicantumkan sebagai skrip yang tersedia, bukan sebagai hasil pengujian yang telah dijalankan.
+
+## Struktur utama
+
+- `src/App.tsx` — antarmuka dan logika daftar tugas.
+- `src/main.tsx` — titik masuk aplikasi React.
+- `src/index.css` — gaya global.
+- `index.html` — dokumen HTML utama.
+- `vite.config.ts`, `tsconfig*.json`, `eslint.config.js` — konfigurasi alat pengembangan, TypeScript, dan lint.
+
+## Batasan
+
+Daftar tugas disimpan menggunakan `localStorage`, sehingga tidak dibagikan dengan pengguna atau browser lain. Fitur akun, sinkronisasi, pengeditan tugas, dan pengelompokan tugas tidak diimplementasikan.
